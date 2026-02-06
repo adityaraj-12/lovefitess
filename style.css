@@ -1,0 +1,968 @@
+/* ===================================
+   CSS Reset & Base Styles
+   =================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Color Palette */
+    --primary-red: #e74c3c;
+    --dark-red: #c0392b;
+    --black: #0a0a0a;
+    --dark-grey: #1a1a1a;
+    --medium-grey: #2a2a2a;
+    --light-grey: #3a3a3a;
+    --text-white: #ffffff;
+    --text-grey: #cccccc;
+    
+    /* BMI Colors */
+    --bmi-underweight: #3498db;
+    --bmi-normal: #2ecc71;
+    --bmi-overweight: #f39c12;
+    --bmi-obese: #e74c3c;
+    
+    /* Spacing */
+    --section-padding: 80px 0;
+    --container-padding: 0 20px;
+    
+    /* Transitions */
+    --transition: all 0.3s ease;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--black);
+    color: var(--text-white);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+/* ===================================
+   Utility Classes
+   =================================== */
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--container-padding);
+}
+
+.section {
+    padding: var(--section-padding);
+}
+
+.btn {
+    display: inline-block;
+    padding: 14px 32px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    border: none;
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: var(--primary-red);
+    color: var(--text-white);
+}
+
+.btn-primary:hover {
+    background-color: var(--dark-red);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(231, 76, 60, 0.4);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--text-white);
+    border: 2px solid var(--primary-red);
+}
+
+.btn-secondary:hover {
+    background-color: var(--primary-red);
+    transform: translateY(-2px);
+}
+
+/* Fade-in Animation */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===================================
+   Navigation Bar
+   =================================== */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    padding: 15px 0;
+    transition: var(--transition);
+}
+
+.navbar.scrolled {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.nav-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-white);
+}
+
+.logo span {
+    color: var(--primary-red);
+}
+
+.nav-menu {
+    display: flex;
+    gap: 35px;
+}
+
+.nav-link {
+    position: relative;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-grey);
+    transition: var(--transition);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-red);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--text-white);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Hamburger Menu */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-white);
+    transition: var(--transition);
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 8px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* ===================================
+   Hero Section
+   =================================== */
+
+.hero {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920&h=1080&fit=crop');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(10, 10, 10, 0.8), rgba(231, 76, 60, 0.2));
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 800px;
+    padding: 0 20px;
+}
+
+.hero-title {
+    font-size: 60px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    animation: fadeInUp 1s ease;
+}
+
+.hero-subtitle {
+    font-size: 20px;
+    color: var(--text-grey);
+    margin-bottom: 40px;
+    animation: fadeInUp 1s ease 0.2s backwards;
+}
+
+.hero-content .btn {
+    animation: fadeInUp 1s ease 0.4s backwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===================================
+   Section Headers
+   =================================== */
+
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-title {
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    position: relative;
+    display: inline-block;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background-color: var(--primary-red);
+}
+
+.section-subtitle {
+    font-size: 18px;
+    color: var(--text-grey);
+    margin-top: 20px;
+}
+
+/* ===================================
+   Programs Section
+   =================================== */
+
+.programs {
+    background-color: var(--dark-grey);
+}
+
+.programs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+}
+
+.program-card {
+    background-color: var(--medium-grey);
+    padding: 40px 30px;
+    border-radius: 8px;
+    text-align: center;
+    transition: var(--transition);
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.program-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary-red);
+    box-shadow: 0 10px 30px rgba(231, 76, 60, 0.3);
+}
+
+.program-icon {
+    font-size: 50px;
+    margin-bottom: 20px;
+}
+
+.program-card h3 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: var(--text-white);
+}
+
+.program-card p {
+    color: var(--text-grey);
+    font-size: 15px;
+}
+
+/* ===================================
+   Trainers Section
+   =================================== */
+
+.trainers {
+    background-color: var(--black);
+}
+
+.trainers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+}
+
+.trainer-card {
+    background-color: var(--medium-grey);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: var(--transition);
+    cursor: pointer;
+}
+
+.trainer-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(231, 76, 60, 0.3);
+}
+
+.trainer-image {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+}
+
+.trainer-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.trainer-card:hover .trainer-image img {
+    transform: scale(1.1);
+}
+
+.trainer-info {
+    padding: 25px;
+}
+
+.trainer-info h3 {
+    font-size: 22px;
+    margin-bottom: 8px;
+}
+
+.trainer-role {
+    color: var(--primary-red);
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.trainer-bio {
+    color: var(--text-grey);
+    font-size: 15px;
+}
+
+/* ===================================
+   Gallery Section
+   =================================== */
+
+.gallery {
+    background-color: var(--dark-grey);
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    height: 250px;
+    cursor: pointer;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.gallery-item:hover img {
+    transform: scale(1.15);
+}
+
+.gallery-item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(231, 76, 60, 0.3), rgba(10, 10, 10, 0.5));
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.gallery-item:hover::after {
+    opacity: 1;
+}
+
+/* ===================================
+   BMI Calculator Section
+   =================================== */
+
+.bmi {
+    background-color: var(--black);
+}
+
+.bmi-calculator {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: var(--medium-grey);
+    border-radius: 8px;
+    padding: 50px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.calculator-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--text-white);
+}
+
+.input-group input {
+    padding: 14px;
+    border: 2px solid var(--light-grey);
+    border-radius: 4px;
+    background-color: var(--dark-grey);
+    color: var(--text-white);
+    font-size: 16px;
+    transition: var(--transition);
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--primary-red);
+}
+
+.bmi-result {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.result-content {
+    text-align: center;
+    width: 100%;
+}
+
+.result-content h3 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: var(--text-grey);
+}
+
+.bmi-value {
+    font-size: 72px;
+    font-weight: 800;
+    margin-bottom: 15px;
+    transition: var(--transition);
+}
+
+.bmi-category {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    transition: var(--transition);
+}
+
+.bmi-info {
+    text-align: left;
+    margin-top: 30px;
+    padding: 20px;
+    background-color: var(--dark-grey);
+    border-radius: 6px;
+}
+
+.bmi-info p {
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.bmi-range {
+    padding: 6px 12px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.bmi-range.underweight {
+    background-color: rgba(52, 152, 219, 0.2);
+    border-left: 4px solid var(--bmi-underweight);
+}
+
+.bmi-range.normal {
+    background-color: rgba(46, 204, 113, 0.2);
+    border-left: 4px solid var(--bmi-normal);
+}
+
+.bmi-range.overweight {
+    background-color: rgba(243, 156, 18, 0.2);
+    border-left: 4px solid var(--bmi-overweight);
+}
+
+.bmi-range.obese {
+    background-color: rgba(231, 76, 60, 0.2);
+    border-left: 4px solid var(--bmi-obese);
+}
+
+/* BMI Result Color Classes */
+.bmi-value.underweight,
+.bmi-category.underweight {
+    color: var(--bmi-underweight);
+}
+
+.bmi-value.normal,
+.bmi-category.normal {
+    color: var(--bmi-normal);
+}
+
+.bmi-value.overweight,
+.bmi-category.overweight {
+    color: var(--bmi-overweight);
+}
+
+.bmi-value.obese,
+.bmi-category.obese {
+    color: var(--bmi-obese);
+}
+
+/* ===================================
+   Pricing Section
+   =================================== */
+
+.pricing {
+    background-color: var(--dark-grey);
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.pricing-card {
+    background-color: var(--medium-grey);
+    border-radius: 8px;
+    padding: 40px 30px;
+    text-align: center;
+    transition: var(--transition);
+    border: 2px solid transparent;
+    position: relative;
+}
+
+.pricing-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary-red);
+    box-shadow: 0 10px 30px rgba(231, 76, 60, 0.3);
+}
+
+.pricing-card.featured {
+    border-color: var(--primary-red);
+    background-color: var(--light-grey);
+}
+
+.popular-badge {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--primary-red);
+    color: var(--text-white);
+    padding: 6px 20px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.pricing-header {
+    margin-bottom: 30px;
+}
+
+.pricing-header h3 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.price {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 5px;
+}
+
+.currency {
+    font-size: 24px;
+    margin-top: 8px;
+}
+
+.amount {
+    font-size: 56px;
+    font-weight: 800;
+    color: var(--primary-red);
+}
+
+.period {
+    font-size: 16px;
+    color: var(--text-grey);
+    margin-top: 12px;
+}
+
+.pricing-features {
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.pricing-features li {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--light-grey);
+    font-size: 15px;
+}
+
+.pricing-features li:last-child {
+    border-bottom: none;
+}
+
+/* ===================================
+   Contact Section
+   =================================== */
+
+.contact {
+    background-color: var(--black);
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.contact-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.contact-icon {
+    font-size: 36px;
+    flex-shrink: 0;
+}
+
+.contact-details h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: var(--text-white);
+}
+
+.contact-details p {
+    color: var(--text-grey);
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.contact-map {
+    background-color: var(--medium-grey);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.map-placeholder {
+    height: 100%;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-grey);
+}
+
+.map-placeholder p:first-child {
+    font-size: 64px;
+    margin-bottom: 10px;
+}
+
+.map-placeholder p:last-child {
+    font-size: 18px;
+}
+
+/* ===================================
+   Footer
+   =================================== */
+
+.footer {
+    background-color: var(--dark-grey);
+    padding: 40px 0 20px;
+    border-top: 1px solid var(--light-grey);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.footer-logo h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.footer-logo span {
+    color: var(--primary-red);
+}
+
+.footer-logo p {
+    color: var(--text-grey);
+    font-size: 14px;
+}
+
+.footer-social {
+    display: flex;
+    gap: 25px;
+}
+
+.social-link {
+    color: var(--text-grey);
+    font-size: 16px;
+    transition: var(--transition);
+}
+
+.social-link:hover {
+    color: var(--primary-red);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid var(--light-grey);
+}
+
+.footer-bottom p {
+    color: var(--text-grey);
+    font-size: 14px;
+}
+
+/* ===================================
+   Responsive Design
+   =================================== */
+
+/* Tablet */
+@media (max-width: 992px) {
+    .hero-title {
+        font-size: 48px;
+    }
+    
+    .hero-subtitle {
+        font-size: 18px;
+    }
+    
+    .section-title {
+        font-size: 36px;
+    }
+    
+    .bmi-calculator {
+        grid-template-columns: 1fr;
+        padding: 40px 30px;
+    }
+    
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+    
+    .nav-menu {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background-color: rgba(10, 10, 10, 0.98);
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding-top: 50px;
+        gap: 30px;
+        transition: left 0.3s ease;
+    }
+    
+    .nav-menu.active {
+        left: 0;
+    }
+    
+    .nav-link {
+        font-size: 20px;
+    }
+    
+    .hero {
+        background-attachment: scroll;
+    }
+    
+    .hero-title {
+        font-size: 36px;
+    }
+    
+    .hero-subtitle {
+        font-size: 16px;
+    }
+    
+    .section {
+        padding: 60px 0;
+    }
+    
+    .section-title {
+        font-size: 32px;
+    }
+    
+    .section-subtitle {
+        font-size: 16px;
+    }
+    
+    .programs-grid,
+    .trainers-grid,
+    .pricing-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .bmi-calculator {
+        padding: 30px 20px;
+    }
+    
+    .bmi-value {
+        font-size: 56px;
+    }
+    
+    .bmi-category {
+        font-size: 20px;
+    }
+    
+    .contact-item {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo h1 {
+        font-size: 24px;
+    }
+    
+    .hero-title {
+        font-size: 28px;
+    }
+    
+    .section-title {
+        font-size: 28px;
+    }
+    
+    .btn {
+        padding: 12px 24px;
+        font-size: 14px;
+    }
+}
